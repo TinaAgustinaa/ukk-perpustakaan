@@ -57,7 +57,11 @@
                                                 </select>
                                             </div>
 
-
+                                            <div class="mb-3">
+                                                <label for="foto" class="foto-label">Foto Buku:</label>
+                                                <input type="file" name="foto" accept="image/*" class="form-control" required>
+                                            </div>
+                                            
                                             <button type="submit"
                                                 class="bg-blue-500 text-black border py-2 px-4 rounded">Simpan</button>
                                         </form>
