@@ -6,14 +6,14 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div class="mb-4 d-flex justify-content-between">
-                        <a class="btn btn-primary" href="{{route('peminjaman.tambah')}}">+ Tambah Data Peminjaman</a>
+                        <a class="btn btn-success" href="{{route('peminjaman.tambah')}}">+ Tambah Data Peminjaman</a>
                             <a href="{{ route('print') }}" class="btn btn-primary">
                             <i class="fa fa-download"></i> Ekspor PDF</a>
                         </a>
                     </div>
 
                     <table class="table-auto w-full border-collapse border border-gray-400">
-                        <thead>
+                        <thead class="bg-primary text-white">
                             <tr>
                                 <th class="px-4 py-2 border">Nama Peminjam</th>
                                 <th class="px-4 py-2 border">Buku yang Dipinjam</th>
@@ -35,12 +35,12 @@
                                         @if($p->status === 'Dipinjam')
                                             <form action="{{ route('peminjaman.kembalikan', $p->id) }}" method="post">
                                                 @csrf
-                                                <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-black border font-bold py-2 px-4 rounded">
-                                                    Kembalikan
-                                                </button>
+                                                <a class="btn btn-success" href="{{route('peminjaman.tambah')}}">Dikembalikan</a>
+                           
+                                              
                                             </form>
                                         @else
-                                            
+                                           - 
                                         @endif
 
                                         

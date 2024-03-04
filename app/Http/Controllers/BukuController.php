@@ -74,4 +74,10 @@ class BukuController extends Controller
 
         return redirect('/buku');
     }
+
+    public function welcome(){
+        $buku = Buku::all();
+        
+        return view('welcome', ['buku' => $buku]);
+    }
 }

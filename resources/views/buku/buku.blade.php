@@ -9,7 +9,7 @@
                         </a>
                     </div>
                     <table class="table table-bordered">
-                        <thead class="bg-gray-100">
+                    <thead class="bg-primary text-white">
                             <tr>
                                 <th>Foto</th>
                                 <th class="py-2 px-4">Judul</th>
@@ -36,8 +36,10 @@
                                    <form method="post" action="{{route('buku.destroy',$b->id)}}">
                                    @csrf
                                    @method('DELETE')
-                                   <button type="submit" class="btn btn-danger">Hapus</button>
-
+                                   <button type="submit" class="btn btn-danger">
+                                        <i class="fa fa-trash"></i>    
+                                        Hapus</button>
+                                        
                                    <a class="btn btn-warning" href="{{route('buku.edit',$b->id)}}">Edit</a>
                                 </td>
                             </tr>

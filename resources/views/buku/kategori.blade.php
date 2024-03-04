@@ -15,7 +15,7 @@
 
                 <div class="card-body">
                     <table class="table table-bordered">
-                        <thead>
+                    <thead class="bg-info text-white">
                             <tr>
                                 <th class="px-4 py-2">Nama Kategori</th>
                                 <th class="col-3 px-4 py-2">Aksi</th>
@@ -31,7 +31,7 @@
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">
-                                        
+                                        <i class="fa fa-trash"></i>    
                                         Hapus</button>
                                     
                                     <a class="btn btn-warning" href="{{route('kategori.edit', $k->id)}}">Edit</a>
