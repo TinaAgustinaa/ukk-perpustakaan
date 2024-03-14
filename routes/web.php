@@ -18,13 +18,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [BukuController::class, 'welcome']);
-
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/buku/detail{id}', [BukuController::class, 'detail'])->name('detail');  
 
 
-Route::middleware('auth')->group(function () {
+//admin
+Route::middleware('auth', 'role:admin')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
@@ -46,5 +47,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/peminjaman/selesai/{id}', [PeminjamanController::class, 'kembalikanBuku'])->name('peminjaman.kembalikan');
     Route::get('/report', [PeminjamanController::class, 'print'])->name('print'); 
 });
+
+//user
+Route::get('/user/peminjaman', [PeminjamanController::class, 'userPeminjaman'])->name('peminjaman.user')
+->middleware(['auth', 'role:user']);
 
 require __DIR__.'/auth.php';

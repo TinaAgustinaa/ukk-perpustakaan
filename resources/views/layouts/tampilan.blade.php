@@ -47,6 +47,9 @@
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
+            @role('admin')
+            
+
 
                 <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
                     data-parent="#accordionSidebar">
@@ -64,28 +67,36 @@
             <hr class="sidebar-divider">
 
               <!-- Nav Item - Dashboard -->
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="{{ route ('kategori') }}">
                     <i class="fas fa-fw fa-folder-open"></i>
                     <span>Data Kategori</span></a>
             </li>
 
               <!-- Nav Item - Dashboard -->
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="{{ route ('buku') }}">
                     <i class="fas fa-fw fa-book"></i>
                     <span>Data Buku</span></a>
             </li>
 
               <!-- Nav Item - Dashboard -->
-              <li class="nav-item active">
+              <li class="nav-item">
                 <a class="nav-link" href="{{ route ('peminjaman.index') }}">
                     <i class="fas fa-fw fa-paper-plane"></i>
                     <span>Data Peminjaman</span></a>
             </li>
 
+          @endrole
+          @role('user')
+          <li class="nav-item">
+                <a class="nav-link" href="{{ route ('peminjaman.user') }}">
+                    <i class="fas fa-fw fa-paper-plane"></i>
+                    <span>Data Peminjaman</span></a>
+            </li>
+            @endrole
+    
 
-              
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
