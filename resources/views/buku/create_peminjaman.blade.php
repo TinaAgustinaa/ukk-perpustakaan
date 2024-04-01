@@ -1,13 +1,19 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('layouts.tampilan')
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6 text-gray-900">
+@section('content')
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h1 class="h3 text-2xl font-semibold mb-4">Formulir Data Peminjaman</h1>
+                    </div>
+
+                    <div class="card-body">
+                        @if(session('success'))
+                            <p class="text-success">{{ session('success') }}</p>
+                        @endif
+
                 <form action="{{ route('peminjaman.store') }}" method="post">
                     @csrf
 
@@ -31,12 +37,12 @@
 
                     <div class="mb-3">
                         <label for="tanggal_peminjaman" class="block text-sm font-medium text-gray-700">Tanggal Peminjaman:</label>
-                        <input type="date" required name="tanggal_peminjaman" id="tanggal_peminjaman" class="mt-1 p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+                        <input type="date" required name="tanggal_peminjaman" id="tanggal_peminjaman" class="mt-1 p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" value="{{ date('Y-m-d') }}" readonly>
                     </div>
 
                     <div class="mb-3">
                         <label for="tanggal_pengembalian" class="block text-sm font-medium text-gray-700">Tanggal Pengembalian:</label>
-                        <input type="date" required name="tanggal_pengembalian" id="tanggal_pengembalian" class="mt-1 p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300">
+                        <input type="date" required name="tanggal_pengembalian" id="tanggal_pengembalian" class="mt-1 p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300" value="{{ \Carbon\Carbon::parse(date('Y-m-d'))->addDays(3)->format('Y-m-d')}}">
                     </div>
                     <br>
                     <button type="submit" class="bg-gray-500 hover:bg-blue-700 text-black border font-bold py-2 px-4 rounded">
@@ -46,4 +52,4 @@
             </div>
         </div>
     </div>
-</x-app-layout>
+@endsection

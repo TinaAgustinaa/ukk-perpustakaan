@@ -15,7 +15,7 @@
 
                 <div class="card-body">
                     <table class="table table-bordered">
-                    <thead class="bg-info text-white">
+                    <thead class="bg-primary text-white">
                             <tr>
                                 <th class="px-4 py-2">Nama Kategori</th>
                                 <th class="col-3 px-4 py-2">Aksi</th>
