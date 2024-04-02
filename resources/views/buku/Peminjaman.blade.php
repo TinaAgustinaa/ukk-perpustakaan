@@ -6,7 +6,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-body bg-white">
-                      
+                    
                         @if(session('success'))
                             <div class="alert alert-success" role="alert">
                                 {{ session('success') }}
@@ -60,11 +60,16 @@
                                                 @csrf
                                                 <button type="submit" class="btn btn-primary">
                                                     Kembalikan
-                                                </button>
+                                                    </button>
+                                                    @elseif ($p->status === 'Denda')
+                                                    <a href="{{route('peminjaman.denda', $p->id)}}" class="btn btn-danger">
+                                                    Bayar Denda
+                                                </a>
+                                                @else ($p->status === 'Dikembalikan')
+                                                -
+                                                @endif
+                                            </td>
                                             </form>
-                                        @else
-                                            -
-                                        @endif
                                     </td>
                                 </tr>
                             @empty

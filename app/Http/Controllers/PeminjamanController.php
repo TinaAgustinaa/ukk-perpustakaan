@@ -47,7 +47,7 @@ class PeminjamanController extends Controller
     public function kembalikanBuku($id)
     {
         $peminjaman = Peminjaman::findOrFail($id);
-        $peminjaman->sekarang = now();
+        $peminjaman-> sekarang=now();
  
         // Menghitung selisih hari antara tanggal seharusnya dikembalikan dan tanggal pengembalian
         $tanggal_seharusnya_dikembalikan = strtotime($peminjaman->tanggal_pengembalian);
@@ -64,6 +64,42 @@ class PeminjamanController extends Controller
  
         $peminjaman->save();
  
-        return redirect()->route('peminjaman.index')->with('success', 'Buku berhasil dikembalikan');
+        return redirect('/peminjaman')->with('success', 'Buku berhasil dikembalikan');
     }
-}
+        public function print(){
+            $user = User::all();
+            $buku = Buku::all();
+            $peminjaman = Peminjaman::all();
+            $data = [
+                'user' => $user,
+                'buku' => $buku,
+                'peminjaman' => $peminjaman,
+            ];
+            $pdf = PDF::loadView('buku.format', $data)
+            ->setPaper('a4');
+            return $pdf->download('Laporan.pdf');
+        }
+    
+        public function userPeminjaman()
+        {
+            //mendapatkan id pengguna yang login
+            $userId = Auth::id();
+    
+            //menampilkan data peminjaman yang hanya dimiliki oleh user yang sedang masuk
+            $peminjaman = Peminjaman::with('user', 'buku')
+                ->where('user_id', $userId)
+                ->get();
+    
+            return view('buku.user_index', compact('peminjaman'));
+        }
+
+            public function bayarDenda($id){
+                $peminjaman = Peminjaman::findOrFail($id);
+                $peminjaman->status = 'Dikembalikan';
+                $peminjaman->sekarang = now();
+                $peminjaman->save();
+
+                return redirect()->route('peminjaman.index')->with('success', 'Denda berhasil dibayar');
+
+            }
+        }

@@ -46,6 +46,8 @@ Route::middleware('auth', 'role:admin')->group(function () {
     Route::get('/peminjaman/tambah', [PeminjamanController::class, 'tambahPeminjaman'])->name('peminjaman.tambah');
     Route::post('/peminjaman/store', [PeminjamanController::class, 'storePeminjaman'])->name('peminjaman.store');
     Route::post('/peminjaman/selesai/{id}', [PeminjamanController::class, 'kembalikanBuku'])->name('peminjaman.kembalikan');
+
+    Route::get('/peminjaman/denda/{id}', [PeminjamanController::class, 'bayarDenda'])->name('peminjaman.denda');
     Route::get('/report', [PeminjamanController::class, 'print'])->name('print');
 
     //user
@@ -55,10 +57,12 @@ Route::middleware('auth', 'role:admin')->group(function () {
     Route::get('/user/update/{id}', [UserController::class, 'update'])->name('users.update');
     Route::post('/user/store', [UserController::class, 'store'])->name('users.store'); 
     Route::delete('/user/hapus/{id}', [UserController::class, 'hapus'])->name('users.hapus');
+
+ //generete report
+ Route::get('/report', [PeminjamanController::class, 'print'])->name('print');
+ Route::get('/user/peminjaman', [PeminjamanController::class, 'userPeminjaman'])->name('peminjaman.user');
 });
-
 //user
-Route::get('/user/peminjaman', [PeminjamanController::class, 'userPeminjaman'])->name('peminjaman.user')
-->middleware(['auth', 'role:user']);
-
+Route::get('/user/peminjaman',[PeminjamanController::class, 'userPeminjaman'])->name('peminjaman.user')
+->middleware(['auth','role:user']);
 require __DIR__.'/auth.php';

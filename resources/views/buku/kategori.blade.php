@@ -5,15 +5,16 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
+
                 <div class="card-header">
                     <div class="mb-4">
                         <a href="{{ route('kategori.create') }}" class="btn btn-info">
                             + Tambah Data Kategori
                         </a>
                     </div>
-                </div>
+               
 
-                <div class="card-body">
+               
                     <table class="table table-bordered">
                     <thead class="bg-primary text-white">
                             <tr>

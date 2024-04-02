@@ -41,8 +41,9 @@
                                         <i class="fa fa-trash"></i>    
                                         Hapus</button>
 
-                                            <a class="btn btn-info" href="#">Edit</a>
+                                           
                                         </td>
+                                    </form>
                                     </tr>
                                     @endforeach
                                 </tbody>
